@@ -7,11 +7,11 @@
     body {
       text-align: center;
       font-family: sans-serif;
-      margin-top: 50px;
+      margin-top: 40px;
     }
-    .hand {
-      font-size: 60px;
-      margin: 10px;
+    .hand img {
+      width: 200px;
+      height: auto;
     }
     .buttons button {
       font-size: 18px;
@@ -29,9 +29,9 @@
   <h1>じゃんけん勝負！</h1>
 
   <div class="buttons">
-    <button onclick="play('グー')">✊ グー</button>
-    <button onclick="play('チョキ')">✌️ チョキ</button>
-    <button onclick="play('パー')">✋ パー</button>
+    <button onclick="play('グー')">グー</button>
+    <button onclick="play('チョキ')">チョキ</button>
+    <button onclick="play('パー')">パー</button>
   </div>
 
   <div>
@@ -45,18 +45,18 @@
   <div id="result"></div>
 
   <script>
-    const hands = {
-      "グー": "✊",
-      "チョキ": "✌️",
-      "パー": "✋"
+    const images = {
+      "グー": "goo.png",
+      "チョキ": "choki.png",
+      "パー": "paa.png"
     };
 
     function play(playerChoice) {
       const choices = ["グー", "チョキ", "パー"];
       const computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
-      document.getElementById("player").textContent = hands[playerChoice];
-      document.getElementById("computer").textContent = hands[computerChoice];
+      document.getElementById("player").innerHTML = `<img src="${images[playerChoice]}" alt="${playerChoice}">`;
+      document.getElementById("computer").innerHTML = `<img src="${images[computerChoice]}" alt="${computerChoice}">`;
 
       const result = judge(playerChoice, computerChoice);
       document.getElementById("result").textContent = result;
