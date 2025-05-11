@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>じゃんけん勝負</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: sans-serif;
+      margin-top: 50px;
+    }
+    .hand {
+      font-size: 60px;
+      margin: 10px;
+    }
+    .buttons button {
+      font-size: 18px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    #result {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>じゃんけん勝負！</h1>
+
+  <div class="buttons">
+    <button onclick="play('グー')">✊ グー</button>
+    <button onclick="play('チョキ')">✌️ チョキ</button>
+    <button onclick="play('パー')">✋ パー</button>
+  </div>
+
+  <div>
+    <h2>あなたの手：</h2>
+    <div id="player" class="hand"></div>
+
+    <h2>あいての手：</h2>
+    <div id="computer" class="hand"></div>
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+    const hands = {
+      "グー": "✊",
+      "チョキ": "✌️",
+      "パー": "✋"
+    };
+
+    function play(playerChoice) {
+      const choices = ["グー", "チョキ", "パー"];
+      const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+      document.getElementById("player").textContent = hands[playerChoice];
+      document.getElementById("computer").textContent = hands[computerChoice];
+
+      const result = judge(playerChoice, computerChoice);
+      document.getElementById("result").textContent = result;
+    }
+
+    function judge(player, computer) {
+      if (player === computer) {
+        return "あいこです！";
+      }
+      if (
+        (player === "グー" && computer === "チョキ") ||
+        (player === "チョキ" && computer === "パー") ||
+        (player === "パー" && computer === "グー")
+      ) {
+        return "あなたの勝ち！🎉";
+      } else {
+        return "あなたの負け…😢";
+      }
+    }
+  </script>
+</body>
+</html>
